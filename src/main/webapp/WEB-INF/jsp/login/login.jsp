@@ -52,7 +52,7 @@
 								</div>
 								<div class="form-group">
 									<input class="form-control" placeholder="Password"
-										name="password" type="password" value="">
+										name="j_password" type="password" value="">
 								</div>
 								<!-- Change this to a button or input when using this as a form -->
 								<!-- <a href="/j_spring_security_check" class="btn btn-lg btn-success btn-block">Login</a> -->
@@ -65,9 +65,9 @@
 		</div>
 	</div>
 
-	<!-- jQuery -->
+<!-- jQuery -->
+	<script src="/js/jquery-3.2.1.js"></script>
 	<script src="/js/jquery.min.js"></script>
-
 	<!-- Bootstrap Core JavaScript -->
 	<script src="/js/bootstrap.min.js"></script>
 
