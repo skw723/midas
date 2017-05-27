@@ -44,15 +44,15 @@
 						<h3 class="panel-title">Please Sign In</h3>
 					</div>
 					<div class="panel-body">
-						<form role="form">
+						<form role="form" action='/j_spring_security_check'>
 							<fieldset>
 								<div class="form-group">
-									<input class="form-control" placeholder="E-mail" name="email"
+									<input class="form-control" placeholder="ID" name="j_username"
 										type="email" autofocus>
 								</div>
 								<div class="form-group">
 									<input class="form-control" placeholder="Password"
-										name="password" type="password" value="">
+										name="j_password" type="password" value="">
 								</div>
 								<div class="checkbox">
 									<label> <input name="remember" type="checkbox"
@@ -69,9 +69,9 @@
 		</div>
 	</div>
 
-	<!-- jQuery -->
+<!-- jQuery -->
+	<script src="/js/jquery-3.2.1.js"></script>
 	<script src="/js/jquery.min.js"></script>
-
 	<!-- Bootstrap Core JavaScript -->
 	<script src="/js/bootstrap.min.js"></script>
 

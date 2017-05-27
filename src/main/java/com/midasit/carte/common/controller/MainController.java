@@ -12,6 +12,6 @@ public class MainController {
 	
 	@RequestMapping(value = "customLogin")
 	public String login() {
-		return "login/login";
+		return "main_menu/main_menu";
 	}
 }
