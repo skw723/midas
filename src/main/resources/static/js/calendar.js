@@ -1837,8 +1837,8 @@ function htmlEscape(s) {
 	return s.replace(/&/g, '&')
 		.replace(/</g, '<')
 		.replace(/>/g, '>')
-		.replace(/'/g, ''')
-		.replace(/"/g, '"')
+		.replace(/'/g, '\'')
+		.replace(/"/g, '\"')
 		.replace(/\n/g, '<br />');
 }
 

@@ -52,7 +52,7 @@
 								</div>
 								<div class="form-group">
 									<input class="form-control" placeholder="Password"
-										name="j_password" type="password" value="">
+										name="password" type="password" value="">
 								</div>
 								<!-- Change this to a button or input when using this as a form -->
 								<!-- <a href="/j_spring_security_check" class="btn btn-lg btn-success btn-block">Login</a> -->

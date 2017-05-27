@@ -7,11 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 	@RequestMapping(value = { "", "/", "index" })
 	public String main() {
-		return "index";
+		return "/main_menu/main_menu";
 	}
-	
+
 	@RequestMapping(value = "customLogin")
 	public String login() {
-		return "main_menu/main_menu";
+		return "/login/login";
+	}
+
+	@RequestMapping(value = "/denied")
+	public String denied() {
+		return "/denied";
 	}
 }

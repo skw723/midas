@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/**").authenticated();
 		http.formLogin().loginProcessingUrl("/login").loginPage("/customLogin").failureUrl("/denied").defaultSuccessUrl("/", true).permitAll();
-		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/");
+		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/customLogin");
 		http.exceptionHandling().accessDeniedPage("/denied");
 		http.csrf().disable();
 	}
