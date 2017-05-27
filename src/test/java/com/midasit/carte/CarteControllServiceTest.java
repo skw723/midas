@@ -3,6 +3,8 @@ package com.midasit.carte;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+import java.util.Calendar;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -38,5 +40,14 @@ public class CarteControllServiceTest {
 		CarteDetailInfo actual = service.getCarte(0);
 
 		assertEquals(expected, actual.getImgPath());
+	}
+	
+	@Test
+	public void timeParsing() {
+		int expected = 28;
+		Calendar cal = Calendar.getInstance();
+		cal.set(2017,2, 1);
+		cal.add(Calendar.DAY_OF_MONTH, -1);
+		assertEquals(expected, cal.get(Calendar.DAY_OF_MONTH));
 	}
 }

@@ -120,7 +120,7 @@ box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">  My Diet</a></br>
+                <a class="navbar-brand" href="/">  My Diet</a></br>
             </div>
             <!-- /.navbar-header -->
 
@@ -338,13 +338,13 @@ box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dash board</a>
+                            <a href="#" id="menu1" class="menu"><i class="fa fa-dashboard fa-fw"></i> Dash board</a>
                         </li>
                         <li>
-                            <a href="#" id=stc><i class="fa fa-table fa-fw"></i> Diet Statistics</a>
+                            <a href="#" id="menu2" class="menu"><i class="fa fa-table fa-fw"></i> Diet Statistics</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Administrator Authority</a>
+                            <a href="#" id="menu3" class="menu"><i class="fa fa-edit fa-fw"></i> Administrator Authority</a>
                         </li>
                     </ul>
                 </div>
@@ -356,7 +356,7 @@ box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
         <!-- Page Content -->
         <div id="page-wrapper">
         <!-- Calendar -->
-        	<div id="calendar"></div>
+        	<!-- <div id="calendar"></div> -->
         </div>
         <!-- /#page-wrapper -->
 
@@ -373,160 +373,23 @@ box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
     <script src="js/sb-admin-2.js"></script>
 
 <script>
+$("#menu1").click(function() {
+	movePage("/carteMain");
+});
 
-	$(document).ready(function() {
-	    var date = new Date();
-		var d = date.getDate();
-		var m = date.getMonth();
-		var y = date.getFullYear();
-		
-		/*  className colors
-		
-		className: default(transparent), important(red), chill(pink), success(green), info(blue)
-		
-		*/		
-		
-		  
-		/* initialize the external events
-		-----------------------------------------------------------------*/
-	
-		$('#external-events div.external-event').each(function() {
-		
-			// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-			// it doesn't need to have a start or end
-			var eventObject = {
-				title: $.trim($(this).text()) // use the element's text as the event title
-			};
-			
-			// store the Event Object in the DOM element so we can get to it later
-			$(this).data('eventObject', eventObject);
-			
-			// make the event draggable using jQuery UI
-			$(this).draggable({
-				zIndex: 999,
-				revert: true,      // will cause the event to go back to its
-				revertDuration: 0  //  original position after the drag
-			});
-			
-		});
-	
-	
-		/* initialize the calendar
-		-----------------------------------------------------------------*/
-		
-		var calendar =  $('#calendar').fullCalendar({
-			header: {
-				left: 'title',
-				center: 'agendaDay,agendaWeek,month',
-				right: 'prev,next today'
-			},
-			editable: true,
-			firstDay: 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
-			selectable: true,
-			defaultView: 'month',
-			
-			axisFormat: 'h:mm',
-			columnFormat: {
-                month: 'ddd',    // Mon
-                week: 'ddd d', // Mon 7
-                day: 'dddd M/d',  // Monday 9/7
-                agendaDay: 'dddd d'
-            },
-            titleFormat: {
-                month: 'MMMM yyyy', // September 2009
-                week: "MMMM yyyy", // September 2009
-                day: 'MMMM yyyy'                  // Tuesday, Sep 8, 2009
-            },
-			allDaySlot: false,
-			selectHelper: true,
-			select: function(start, end, allDay) {
-				$("#dialog-message").dialog({
-					modal: true,
-					buttons: {
-						Ok: function() {
-								$( this ).dialog( "close" );
-							}
-					}
-				});
-				
-				/* var title = prompt('Event Title:');
-				if (title) {
-				var title = prompt('아침 1번	점심 2번	저녁 3번');
-				if (title == 1) {
-					var input = prompt('식단을 적어주세요\n');
-					calendar.fullCalendar('renderEvent',
-						{
-							title: "아침",
-							start: start,
-							end: end,
-							allDay: allDay
-						},
-						true // make the event "stick"
-					);
-				}
-				else if(title == 2) {
-					var input = prompt('식단을 적어주세요');
-				}
-				else if(title == 3) {
-					var input = prompt('식단을 적어주세요');
-				}
-				calendar.fullCalendar('unselect'); */
-			},
-			droppable: true, // this allows things to be dropped onto the calendar !!!
-			drop: function(date, allDay) { // this function is called when something is dropped
-			
-				// retrieve the dropped element's stored Event Object
-				var originalEventObject = $(this).data('eventObject');
-				
-				// we need to copy it, so that multiple events don't have a reference to the same object
-				var copiedEventObject = $.extend({}, originalEventObject);
-				
-				// assign it the date that was reported
-				copiedEventObject.start = date;
-				copiedEventObject.allDay = allDay;
-				
-				// render the event on the calendar
-				// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-				$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-				
-				// is the "remove after drop" checkbox checked?
-				if ($('#drop-remove').is(':checked')) {
-					// if so, remove the element from the "Draggable Events" list
-					$(this).remove();
-				}
-				
-			},
-			
-			events: [
-				{
-					title: 'Click for Google',
-					start: new Date(y, m, 28),
-					end: new Date(y, m, 28),
-					url: 'http://google.com/',
-					className: 'success'
-				},
-				{
-					title: 'Click for Google2',
-					start: new Date(y, m, 28),
-					end: new Date(y, m, 28),
-					url: 'http://google.com/',
-					className: 'success'
-				},
-				{
-					title: 'Click for Google2',
-					start: new Date(y, m, 28),
-					end: new Date(y, m, 28),
-					url: 'http://google.com/',
-					className: 'success'
-				}
-			],			
-		});
-		
-		
-	});
+$("#menu2").click(function() {
+	movePage("/statisticsMain");
+});
 
+$("#menu3").click(function() {
+	movePage("/statisticsMain");
+});
+
+function movePage(url) {
+	$(".menu").removeClass("active");
+	$(this).addClass("active");
+	$("#page-wrapper").load(url);
+}
 </script>
-
 </body>
-
 </html>

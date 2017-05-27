@@ -19,4 +19,9 @@ public class MainController {
 	public String denied() {
 		return "/denied";
 	}
+	
+	@RequestMapping("carteMain")
+	public String carteMain() {
+		return "main_menu/calendar";
+	}
 }
