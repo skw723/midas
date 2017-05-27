@@ -1,4 +1,4 @@
-package com.midasit.sample.security;
+package com.midasit.carte.common.model;
 
 import java.util.Collection;
 
