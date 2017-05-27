@@ -27,9 +27,9 @@
     
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.1/jquery.form.min.js" integrity="sha384-tIwI8+qJdZBtYYCKwRkjxBGQVZS3gGozr3CtI+5JF/oL1JmPEHzCEnIKbDbLTCer" crossorigin="anonymous"></script>
-    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.form.min.js"></script>
+    <link href="css/jquery-ui.css">
     
     <!-- Calendar JS/CSS -->
     <script src="js/calendar.js"></script>

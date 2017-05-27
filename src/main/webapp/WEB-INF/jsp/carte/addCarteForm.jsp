@@ -69,7 +69,6 @@ label {
 			  alert("error")
 		  }
 	  }); */
-	  debugger;
 	  $("#addForm").ajaxSubmit({
 		  success: function() {
 			  alert("success");

@@ -86,7 +86,6 @@
 				allDaySlot : false,
 				selectHelper : true,
 				select : function(start, end, allDay) {
-					debugger;
 					var selected = new Date(start);
 					var month = selected.getMonth() + 1;
 					var ymd = selected.getFullYear() + "-" + month + "-" + selected.getDate();
