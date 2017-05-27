@@ -1,7 +1,5 @@
 package com.midasit.carte.common.model;
 
-import java.util.Date;
-
 import org.apache.ibatis.type.Alias;
 
 @Alias("userInfo")
@@ -11,7 +9,7 @@ public class UserInfo {
 	private String password;
 	private String name;
 	private String eMail;
-	private Date rgstYmdt;
+	private String rgstYmdt;
 
 	public long getUserSeq() {
 		return userSeq;
@@ -53,11 +51,11 @@ public class UserInfo {
 		this.eMail = eMail;
 	}
 
-	public Date getRgstYmdt() {
+	public String getRgstYmdt() {
 		return rgstYmdt;
 	}
 
-	public void setRgstYmdt(Date rgstYmdt) {
+	public void setRgstYmdt(String rgstYmdt) {
 		this.rgstYmdt = rgstYmdt;
 	}
 

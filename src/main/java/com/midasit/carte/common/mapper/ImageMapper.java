@@ -2,9 +2,11 @@ package com.midasit.carte.common.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.midasit.carte.common.model.UserInfo;
+import com.midasit.carte.common.model.ImageInfo;
 
 @Mapper
 public interface ImageMapper {
-	public UserInfo selectUserInfo(String userId);
+	public void insertImageInfo(ImageInfo image);
+
+	public void deleteImageInfo(long menuId);
 }

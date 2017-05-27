@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.midasit.carte.common.mapper.CarteMapper">
+	<insert id="insertCarteInfo" parameterType="carteInfo">
+		INSERT INTO carte
+				  (
+				    ymd
+				  , type
+				  , menu_id
+				  , rgst_ymdt
+				  )
+			 VALUES
+				  (
+				    #{ymd}
+				  , #{type}
+				  , #{menuId}
+				  , NOW()
+				  )
+	</insert>
+	<select id="selectCarteDetailInfo" parameterType="long" resultType="carteDetailInfo">
+		SELECT carte.carte_id AS carteId
+			 , carte.ymd AS ymd
+			 , carte.type AS type
+			 , carte.menu_id AS menuId
+			 , carte.rgst_ymdt AS rgstYmdt
+			 , menu.col1 AS col1
+			 , menu.col2 AS col2
+			 , menu.col3 AS col3
+			 , menu.col4 AS col4
+			 , menu.col5 AS col5
+			 , menu.col6 AS col6
+			 , menu.kcal AS kcal
+			 , image.name AS imgName
+			 , image.path AS imgPath
+		  FROM carte carte
+		 INNER JOIN menu menu
+		 	ON carte.menu_id = menu.menu_id
+		  LEFT OUTER JOIN image image
+		  		  ON carte.menu_id = image.menu_id
+		 WHERE carte.carte_id = #{carteId}
+	</select>
+	<select id="selectCarteInfoList" parameterType="carteSearchParam" resultType="carteInfo">
+		SELECT carte.carte_id AS carteId
+			 , carte.ymd AS ymd
+			 , carte.type AS type
+			 , carte.menu_id AS menuId
+			 , carte.rgst_ymdt AS rgstYmdt
+		  FROM carte carte
+		 WHERE carte.ymd BETWEEN #{startYmd} AND #{endYmd}
+	</select>
+</mapper>

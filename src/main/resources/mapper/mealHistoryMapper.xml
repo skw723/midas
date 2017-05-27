@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.midasit.carte.user.mapper.MealHistoryMapper">
+	<insert id="insertMealHistoryInfo" parameterType="mealHistoryInfo">
+		INSERT INTO meal_history
+				  (
+				    user_id
+				  , ymd
+				  , type
+				  , menu_id
+				  , rgst_ymdt
+				  )
+			 VALUES
+				  (
+				    #{userId}
+				  , #{ymd}
+				  , #{type}
+				  , #{menuId}
+				  , NOW()
+				  )
+	</insert>
+</mapper>
