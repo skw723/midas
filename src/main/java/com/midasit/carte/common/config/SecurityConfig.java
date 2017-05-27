@@ -21,16 +21,17 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/static/**");
-//		web.ignoring().antMatchers("/**");
+		web.ignoring().antMatchers("/css/**");
+		web.ignoring().antMatchers("/js/**");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/**").authenticated();
-		http.formLogin().loginProcessingUrl("/login");
+		http.formLogin().loginProcessingUrl("/login").loginPage("/customLogin").failureUrl("/denied").defaultSuccessUrl("/", true).permitAll();
 		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/");
 		http.exceptionHandling().accessDeniedPage("/denied");
+		http.csrf().disable();
 	}
 
 	@Configuration
