@@ -5,7 +5,7 @@ label {
 	display: flex;
 }
 </style>	
-<form action="/addCarte" method="post" enctype="multipart/upload">
+<form action="/addCarte" method="post" enctype="multipart/upload" id="addForm" onsubmit="return false;">
   <div class="form-group">
     <label for="ymd">선택일</label>
     <input type="text" class="form-control" id="ymd" name="ymd" value="${ymd}" readonly="readonly">
@@ -24,23 +24,23 @@ label {
   </div>
     <div class="form-group">
     <label for="col1">식단2</label>
-    <input type="text" class="form-control" id="col1" name="col1" placeholder="식단2">
+    <input type="text" class="form-control" id="col2" name="col2" placeholder="식단2">
   </div>
     <div class="form-group">
     <label for="col1">식단3</label>
-    <input type="text" class="form-control" id="col1" name="col1" placeholder="식단3">
+    <input type="text" class="form-control" id="col3" name="col3" placeholder="식단3">
   </div>
     <div class="form-group">
     <label for="col1">식단4</label>
-    <input type="text" class="form-control" id="col1" name="col1" placeholder="식단4">
+    <input type="text" class="form-control" id="col4" name="col4" placeholder="식단4">
   </div>
     <div class="form-group">
     <label for="col1">식단5</label>
-    <input type="text" class="form-control" id="col1" name="col1" placeholder="식단5">
+    <input type="text" class="form-control" id="col5" name="col5" placeholder="식단5">
   </div>
     <div class="form-group">
     <label for="col1">식단6</label>
-    <input type="text" class="form-control" id="col1" name="col1" placeholder="식단6">
+    <input type="text" class="form-control" id="col6" name="col6" placeholder="식단6">
   </div>
   <div class="form-group">
     <label for="kcal">kcal</label>
@@ -58,13 +58,26 @@ label {
 	  movePage("/carteMain");
   });
   $("#save").click(function() {
-	  $.ajax({
+	  /* $.ajax({
+		  type: "POST",
 		  url: "addCarte",
+		  data: new FormData($("#saveForm")),
 		  success: function() {
 			  movePage("/carteMain");
 		  },
 		  error: function() {
 			  alert("error")
+		  }
+	  }); */
+	  debugger;
+	  $("#addForm").ajaxSubmit({
+		  success: function() {
+			  alert("success");
+			  movePage("/carteMain");
+			  
+		  },
+		  error: function() {
+			  alert("error");
 		  }
 	  });
   });

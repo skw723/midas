@@ -18,13 +18,13 @@ import com.midasit.carte.common.model.CarteInfo;
 import com.midasit.carte.common.model.CarteSearchParam;
 
 @Controller
-@Secured("ROLE_ADMIN")
 public class CarteController {
 	@Autowired
 	private CarteControllService service;
 
 	@RequestMapping(value = "addCarte")
 	@ResponseBody
+	@Secured("ROLE_ADMIN")
 	public String addCarte(MenuInfo menu, CarteInfo carte, MultipartFile file) throws Exception {
 		service.addCarte(menu, carte, file);
 		return "success";
@@ -32,6 +32,7 @@ public class CarteController {
 
 	@RequestMapping(value = "modifyCarte")
 	@ResponseBody
+	@Secured("ROLE_ADMIN")
 	public String modifyCarte(MenuInfo menu, CarteInfo carte, MultipartFile file) throws Exception {
 		service.modifyCarte(menu, carte, file);
 		return "success";
@@ -51,12 +52,14 @@ public class CarteController {
 
 	@RequestMapping(value = "deleteCarte")
 	@ResponseBody
+	@Secured("ROLE_ADMIN")
 	public String deleteCarte(long carteId) {
 		service.deleteCarte(carteId);
 		return "success";
 	}
-	
+
 	@RequestMapping(value = "addCarteForm")
+	@Secured("ROLE_ADMIN")
 	public String addCarteForm(HttpServletRequest req, String ymd) {
 		req.setAttribute("ymd", ymd);
 		return "carte/addCarteForm";

@@ -30,12 +30,12 @@
 			$(this).data('eventObject', eventObject);
 
 			// make the event draggable using jQuery UI
-			$(this).draggable({
+			/* $(this).draggable({
 				zIndex : 999,
 				revert : true, // will cause the event to go back to its
 				revertDuration : 0
 			//  original position after the drag
-			});
+			}); */
 
 		});
 
@@ -47,11 +47,15 @@
 			url: "/getCarteList",
 			data: "currentYear=" + currentYear + "&currentMonth=" + currentMont,
 			async: false,
-			success: function(data) {
-				debugger;
+			success: function(result) {
+				var data = [];
+				$.each(result, function(index, item) {
+					data.push({title: item.type, start: item.ymd})
+				});
+				initCalendar(data);
 			}, 
 			error: function() {
-				debugger;
+				alert("error")
 			}
 		});
 
@@ -82,7 +86,10 @@
 				allDaySlot : false,
 				selectHelper : true,
 				select : function(start, end, allDay) {
-					var ymd = start.toISOString().substring(0, 10);
+					debugger;
+					var selected = new Date(start);
+					var month = selected.getMonth() + 1;
+					var ymd = selected.getFullYear() + "-" + month + "-" + selected.getDate();
 					movePage("/addCarteForm?ymd=" + ymd);
 				},
 				/* droppable : false, */ // this allows things to be dropped onto the calendar !!!
@@ -113,25 +120,7 @@
 	
 				}, */
 	
-				events : [{
-					title : 'Click for Google',
-					start : new Date(y, m, 28),
-					end : new Date(y, m, 28),
-					url : 'http://google.com/',
-					className : 'success'
-				}, {
-					title : 'Click for Google2',
-					start : new Date(y, m, 28),
-					end : new Date(y, m, 28),
-					url : 'http://google.com/',
-					className : 'success'
-				}, {
-					title : 'Click for Google2',
-					start : new Date(y, m, 28),
-					end : new Date(y, m, 28),
-					url : 'http://google.com/',
-					className : 'success'
-				}],
+				events : events
 			});
 			
 		}
