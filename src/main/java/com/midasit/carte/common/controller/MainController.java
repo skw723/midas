@@ -9,4 +9,9 @@ public class MainController {
 	public String main() {
 		return "index";
 	}
+	
+	@RequestMapping(value = "customLogin")
+	public String login() {
+		return "login/login";
+	}
 }
