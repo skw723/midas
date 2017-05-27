@@ -17,4 +17,6 @@ public interface CarteMapper {
 	public CarteDetailInfo selectCarteDetailInfo(long carteId);
 
 	public List<CarteInfo> selectCarteInfoList(CarteSearchParam param);
+
+	public void deleteCarteInfo(long carteId);
 }

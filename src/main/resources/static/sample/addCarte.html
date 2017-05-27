@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+<form id="search_form">
+<select name="searchType">
+<option value="1">id</option>
+<option value="2">메뉴명</option>
+</select>
+<input type="text" placeholder="검색" name="searchValue">
+<input type="button" value="조회" id="search">
+</form>
+<form action="/addCarte" method="post" enctype="multipart/form-data">
+<input type="text" name="col1">
+<input type="text" name="col2">
+<input type="text" name="col3">
+<input type="text" name="col4">
+<input type="text" name="col5">
+<input type="text" name="col6">
+<input type="text" name="kcal">
+<input type="file" name="file">
+
+<input type="date" name="ymd">
+<select name="type">
+<option value="1">아침</option>
+<option value="2">점심</option>
+<option value="3">저녁</option>
+</select>
+<input type="submit" value="send">
+</form>
+
+<div id="menuList"></div>
+
+<script>
+$(function() {
+	$("#search").click(function() {
+		$.ajax({
+			url: "/getMenuList",
+			data: $("#search_form").serialize(),
+			dataType: "json",
+			success: function(data) {
+				$("#menuList").text("");
+				$.each(data, function(index, item) {
+					var row = "";
+					$.each(item, function(index, item) {
+						if (item == null) {
+							item = "  ";
+						}
+						row += item;
+						row += "|";
+					});
+					$("#menuList").append(row + "<br>");
+				});
+			},
+			error: function() {
+				alert("F");
+			}
+		});
+	});
+});
+</script>
+</body>
+</html>

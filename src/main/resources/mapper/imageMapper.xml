@@ -12,8 +12,8 @@
 			 VALUES
 				  (
 				    #{menuId}
-				  , #{name}
-				  , #{path}
+				  , #{imgName}
+				  , #{imgPath}
 				  , NOW()
 				  )
 	</insert>

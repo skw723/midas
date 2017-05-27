@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.midasit.carte.statistics.mapper.StatisticsMapper">
+	<select id="selectStatisticsByUser" parameterType="StatisticsSearchParam" resultType="carteDetailInfo">
+		SELECT history.user_id AS userId
+			 , history.ymd	AS ymd
+			 , history.type	AS type
+			 , history.menu_id	AS menuId
+			 , history.rgst_ymdt 	AS rgstYmdt
+		  FROM meal_history history
+		 WHERE history.ymd BETWEEN #{startYmd} AND #{endYmd}
+		 <if test="userId != null and userId != ''">
+		   AND history.user_id = #{userId}
+		 </if> 
+		 <if test="menuId != null and menuId != ''">
+		   AND history.menu_id = #{menuId}	
+		 </if>
+		 ORDER BY history.ymd DESC
+		 		, history.type DESC
+	</select>
+</mapper>

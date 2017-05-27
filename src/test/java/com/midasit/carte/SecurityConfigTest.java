@@ -1,4 +1,4 @@
-package com.midasit.carte.common.config;
+package com.midasit.carte;
 
 import static org.junit.Assert.assertTrue;
 

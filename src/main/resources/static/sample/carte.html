@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+<input type="button" value="call" id="call">
+<div id="imageArea"></div>
+
+<iframe src="./addCarte.html"></iframe>
+<script>
+$("#call").click(function() {
+	var $img = $("<img />").prop("src", "/view/file12").on("load", function() {
+		$("#imageArea").html("");
+		$("#imageArea").append($img);
+	});
+});
+</script>
+</body>
+</html>

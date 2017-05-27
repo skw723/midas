@@ -27,6 +27,8 @@
     
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     
     <!-- Calendar JS/CSS -->
     <script src="js/calendar.js"></script>
@@ -438,6 +440,10 @@ box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
 
     </div>
     <!-- /#wrapper -->
+    
+    <div id="dialog-message" title="Download complete">
+    	<p>Currently using <b>36% of your storage space</b>.</p>
+    </div>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
@@ -516,7 +522,16 @@ box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
 			allDaySlot: false,
 			selectHelper: true,
 			select: function(start, end, allDay) {
-				var title = prompt('Event Title:');
+				$("#dialog-message").dialog({
+					modal: true,
+					buttons: {
+						Ok: function() {
+								$( this ).dialog( "close" );
+							}
+					}
+				});
+				
+				/* var title = prompt('Event Title:');
 				if (title) {
 					calendar.fullCalendar('renderEvent',
 						{
@@ -528,7 +543,7 @@ box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
 						true // make the event "stick"
 					);
 				}
-				calendar.fullCalendar('unselect');
+				calendar.fullCalendar('unselect'); */
 			},
 			droppable: true, // this allows things to be dropped onto the calendar !!!
 			drop: function(date, allDay) { // this function is called when something is dropped

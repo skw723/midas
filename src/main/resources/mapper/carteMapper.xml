@@ -48,4 +48,8 @@
 		  FROM carte carte
 		 WHERE carte.ymd BETWEEN #{startYmd} AND #{endYmd}
 	</select>
+	<delete id="deleteCarteInfo" parameterType="long">
+		DELETE FROM carte
+			  WHERE carte_id = #{carteId}
+	</delete>
 </mapper>

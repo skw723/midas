@@ -46,10 +46,11 @@ public class CarteControllService {
 		if (file == null || file.getSize() == 0) {
 			return;
 		}
-		File saveFile = new File("D:\\upload", file.getName() + menuId);
+		String savedFileName = "D:\\upload\\" + menuId + String.valueOf(System.currentTimeMillis());
+		File saveFile = new File(savedFileName);
 		file.transferTo(saveFile);
 		ImageInfo image = new ImageInfo();
-		image.setImgName(file.getName() + menuId);
+		image.setImgName(file.getOriginalFilename());
 		image.setImgPath(saveFile.getPath());
 		image.setMenuId(menuId);
 		imgMapper.insertImageInfo(image);
@@ -70,10 +71,18 @@ public class CarteControllService {
 	}
 
 	public CarteDetailInfo getCarte(long carteId) {
-		return carteMapper.selectCarteDetailInfo(carteId);
+		CarteDetailInfo detailInfo = carteMapper.selectCarteDetailInfo(carteId);
+		String oldPath = detailInfo.getImgPath();
+		int index = oldPath.lastIndexOf("\\");
+		detailInfo.setImgPath("view" + "\\" + oldPath.substring(index + 1, oldPath.length()));
+		return detailInfo;
 	}
-	
+
 	public List<CarteInfo> getCarteList(CarteSearchParam param) {
 		return carteMapper.selectCarteInfoList(param);
+	}
+
+	public void deleteCarte(long carteId) {
+		carteMapper.deleteCarteInfo(carteId);
 	}
 }
