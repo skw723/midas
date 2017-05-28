@@ -75,8 +75,10 @@ public class CarteControllService {
 	public CarteDetailInfo getCarte(long carteId) {
 		CarteDetailInfo detailInfo = carteMapper.selectCarteDetailInfo(carteId);
 		String oldPath = detailInfo.getImgPath();
-		int index = oldPath.lastIndexOf("\\");
-		detailInfo.setImgPath("view" + "\\" + oldPath.substring(index + 1, oldPath.length()));
+		if (StringUtils.isNotEmpty(oldPath)) {
+			int index = oldPath.lastIndexOf("\\");
+			detailInfo.setImgPath("view" + "\\" + oldPath.substring(index + 1, oldPath.length()));			
+		}
 		return detailInfo;
 	}
 
